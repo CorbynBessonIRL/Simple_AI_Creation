@@ -39,7 +39,7 @@ int main() {
     };
 
     Node review = {
-        "Review how pointers connect nodes, then try again.",
+        "Review how pointers connect nodes, then try again. again again",
         nullptr, nullptr
     };
 
