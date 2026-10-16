@@ -34,7 +34,7 @@ void runAI(Node* p){
 
 int main() {
     Node good = {
-        "Great! Try writing a linked-list insertion function.",
+        "Great! Try writing a linked-list insertion function WOW.",
         nullptr, nullptr
     };
 
