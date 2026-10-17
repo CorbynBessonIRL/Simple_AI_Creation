@@ -1,3 +1,3 @@
 Leaf Node|A node with no children
-mom|haha
+
 Leaf node|A node with no children
