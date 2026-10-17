@@ -48,8 +48,11 @@ void askAI() {
               cout << "Correction saved!" << endl;
               break;
             }
+            if (feedback == "y"){
+                break;
+            }
             if (feedback != "n" && feedback != "y"){
-              cout << "Answer with either y or n " << endl;
+              cout << "Please answer with either y or n." << endl;
             }
         }
 
