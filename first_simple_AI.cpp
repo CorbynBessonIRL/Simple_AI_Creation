@@ -34,17 +34,17 @@ void runAI(Node* p){
 
 int main() {
     Node good = {
-        "Great! Try writing a linked-list insertion function WOW!.",
+        "Great! We'll talk about the concept called \"Node\" in the next session!",
         nullptr, nullptr
     };
 
     Node review = {
-        "Review how pointers connect nodes, then try again. again again",
+        "Review what pointers point to, then try again.",
         nullptr, nullptr
     };
 
     Node root = {
-        "Do you understand pointers? ",
+        "Do you understand how pointers work? ",
         &good, &review
     };
 
