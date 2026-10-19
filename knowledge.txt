@@ -1,4 +1,5 @@
-Define leaf node|A node with no children
-What is a leaf node?|A node with no children
-Leaf Node|A node with no children
 Leaf node|A node with no children
+mariah carey|god
+Leaf Node|A node with no children
+What is a leaf node?|A node with no children
+Define leaf node|A node with no children

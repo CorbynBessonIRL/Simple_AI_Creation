@@ -2,6 +2,8 @@
 #include <fstream>
 #include <unordered_map>
 #include <string>
+#include <algorithm>
+#include <cctype>
 using namespace std;
 
 unordered_map<string, string> knowledge;
