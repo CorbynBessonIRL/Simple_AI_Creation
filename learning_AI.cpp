@@ -4,9 +4,51 @@
 #include <string>
 #include <algorithm>
 #include <cctype>
+
 using namespace std;
 
 unordered_map<string, string> knowledge;
+
+string normalizeTopic(string topic) {
+    // Convert to lowercase
+    transform(topic.begin(), topic.end(), topic.begin(),
+        [](unsigned char c) {
+            return static_cast<char>(tolower(c));
+        });
+
+    // Remove spaces at the beginning
+    while (!topic.empty() &&
+           isspace(static_cast<unsigned char>(topic.front()))) {
+        topic.erase(0, 1);
+    }
+
+    // Remove spaces and punctuation at the end
+    while (!topic.empty() &&
+           (isspace(static_cast<unsigned char>(topic.back())) ||
+            topic.back() == '?' ||
+            topic.back() == '.' ||
+            topic.back() == '!')) {
+        topic.pop_back();
+    }
+
+    // Remove common question phrases
+    if (topic.rfind("what is ", 0) == 0) {
+        topic.erase(0, 8);
+    } else if (topic.rfind("define ", 0) == 0) {
+        topic.erase(0, 7);
+    }
+
+    // Remove articles
+    if (topic.rfind("a ", 0) == 0) {
+        topic.erase(0, 2);
+    } else if (topic.rfind("an ", 0) == 0) {
+        topic.erase(0, 3);
+    } else if (topic.rfind("the ", 0) == 0) {
+        topic.erase(0, 4);
+    }
+
+    return topic;
+}
 
 void loadKnowledge() {
     ifstream file("knowledge.txt");
