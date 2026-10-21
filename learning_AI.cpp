@@ -57,9 +57,9 @@ void loadKnowledge() {
     }
     string topic, answer;
 
-    while (getline(file, topic, '|') && getline(file, answer)) {
-        knowledge[topic] = answer;
-    }
+   while (getline(file, topic, '|') && getline(file, answer)) {
+    knowledge[normalizeTopic(topic)] = answer;
+   }
 }
 
 void saveKnowledge() {
@@ -74,6 +74,8 @@ void askAI() {
     string topic;
     cout << "What do you want to ask about? ";
     getline(cin, topic);
+    
+    topic = normalizeTopic(topic);
 
     if (knowledge.find(topic) != knowledge.end()) {
         cout << "My answer: " << knowledge[topic] << endl;

@@ -1,8 +1,2 @@
-
-Leaf node|A node with no children
-what is a dog|a common animal with four legs, especially kept by people as a pet or to hunt or guard things:
-mariah carey|god
-Leaf Node|A node with no children
-What is a leaf node?|A node with no children
-
-Define leaf node|A node with no children
+dog|a common animal with four legs, especially kept by people as a pet or to hunt or guard things
+leaf node|A node with no children
