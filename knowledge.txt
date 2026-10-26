@@ -1,2 +1,3 @@
-dog|a common animal with four legs, especially kept by people as a pet or to hunt or guard things
+dog doing|eating
 leaf node|A node with no children
+dog|a common animal with four legs, especially kept by people as a pet or to hunt or guard things
