@@ -8,6 +8,7 @@
 using namespace std;
 
 unordered_map<string, string> knowledge;
+unordered_map<string, string> alieases;
 
 string normalizeTopic(string topic) {
     // Convert to lowercase
@@ -49,6 +50,27 @@ string normalizeTopic(string topic) {
 
     return topic;
 }
+void loadAliases(){
+    ifstream file("aliases.txt");
+
+    if (!file){
+        return;
+    }
+
+    string alias, topic;
+    
+    while (getline(file,alias, '|') && getline(file,topic)){
+        aliases[normalizeTopic(alias)] = normalizeTopic(topic);
+    }
+}
+void saveAliases() {
+    ofstream file("aliases.txt");
+
+    for (auto item : aliases) {
+        file << item.first << "|" << item.second << endl;
+    }
+}
+
 
 void loadKnowledge() {
     ifstream file("knowledge.txt");
