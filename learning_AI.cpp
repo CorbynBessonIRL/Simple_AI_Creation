@@ -8,7 +8,7 @@
 using namespace std;
 
 unordered_map<string, string> knowledge;
-unordered_map<string, string> alieases;
+unordered_map<string, string> aliases;
 
 string normalizeTopic(string topic) {
     // Convert to lowercase
@@ -94,38 +94,92 @@ void saveKnowledge() {
 
 void askAI() {
     string topic;
+
     cout << "What do you want to ask about? ";
     getline(cin, topic);
-    
+
     topic = normalizeTopic(topic);
 
-    if (knowledge.find(topic) != knowledge.end()) {
-        cout << "My answer: " << knowledge[topic] << endl;
-        while (true){
+    // Check whether this is an alias
+    string lookupTopic = topic;
+
+    auto aliasIt = aliases.find(topic);
+
+    if (aliasIt != aliases.end()) {
+        lookupTopic = aliasIt->second;
+    }
+
+    // Check whether the AI knows the topic
+    auto answerIt = knowledge.find(lookupTopic);
+
+    if (answerIt != knowledge.end()) {
+        cout << "My answer: " << answerIt->second << endl;
+
+        while (true) {
             cout << "Is this answer correct? (y/n): ";
+
             string feedback;
             getline(cin, feedback);
+
             if (feedback == "n") {
-              cout << "What is the correct answer? ";
-              string correction;
-              getline(cin, correction);
+                cout << "What is the correct answer? ";
 
-              knowledge[topic] = correction;
-              saveKnowledge();
+                string correction;
+                getline(cin, correction);
 
-              cout << "Correction saved!" << endl;
-              break;
-            }
-            if (feedback == "y"){
+                knowledge[lookupTopic] = correction;
+                saveKnowledge();
+
+                cout << "Correction saved!" << endl;
                 break;
             }
-            if (feedback != "n" && feedback != "y"){
-              cout << "Please answer with either y or n." << endl;
+
+            if (feedback == "y") {
+                break;
             }
+
+            cout << "Please answer with either y or n." << endl;
         }
 
     } else {
         cout << "I don't know that yet." << endl;
+
+        cout << "Is this another name for a topic I already know? (y/n): ";
+
+        string feedback;
+        getline(cin, feedback);
+
+        if (feedback == "y") {
+            cout << "Which existing topic does it refer to? ";
+
+            string existingTopic;
+            getline(cin, existingTopic);
+
+            existingTopic = normalizeTopic(existingTopic);
+
+            // Check whether the chosen topic is also an alias
+            auto existingAlias = aliases.find(existingTopic);
+
+            if (existingAlias != aliases.end()) {
+                existingTopic = existingAlias->second;
+            }
+
+            // Make sure the original topic exists
+            if (knowledge.find(existingTopic) != knowledge.end()) {
+                aliases[topic] = existingTopic;
+                saveAliases();
+
+                cout << "I'll remember that "
+                     << topic << " refers to "
+                     << existingTopic << "." << endl;
+
+                return;
+            }
+
+            cout << "I couldn't find that topic. "
+                 << "Let's teach it as a new topic." << endl;
+        }
+
         cout << "Teach me the answer: ";
 
         string answer;
@@ -140,6 +194,7 @@ void askAI() {
 
 int main() {
     loadKnowledge();
+    loadAliases();
 
     while (true) {
         cout << "\n1. Ask or teach\n";
