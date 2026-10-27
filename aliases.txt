@@ -1,1 +1,8 @@
+heap sort|heapsort
+woofer|dog
+doggy|dog
+kitty cat|cat
+kitty|cat
 puppy|dog
+doggie|dog
+doggo|dog

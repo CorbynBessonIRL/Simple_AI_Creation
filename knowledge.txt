@@ -1,2 +1,6 @@
+heap|A specialized tree-based data structure used to manage dynamic memory or implement priority queues
+c++|C++ is a cross-platform language that can be used to create high-performance applications.
 leaf node|A node with no children
+heapsort|Heapsort is an efficient, comparison-based, in-place sorting algorithm that uses a binary heap data structure
 dog|a common animal with four legs, especially kept by people as a pet or to hunt or guard things
+cat|a small animal with fur, four legs, a tail, and claws, usually kept as a pet or for catching mice
